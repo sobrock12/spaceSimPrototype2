@@ -20,6 +20,8 @@ public class inverseMovement : MonoBehaviour
 
     void Start()
     {
+        
+        player = GameObject.Find("ship1");
 
         rb = GetComponent<Rigidbody>();
         inverseVar = player.GetComponent<displayForwardVector>();

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - selectable
   - warp barrier
+  - tunnelSpawn
   layers:
   - Default
   - TransparentFX

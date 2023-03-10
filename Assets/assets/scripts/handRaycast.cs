@@ -37,24 +37,24 @@ public class handRaycast : MonoBehaviour
 
 
         
-        /*if (hit.collider != null)
+        if (hit.collider != null)
         {
 
             if (hit.collider.CompareTag("selectable"))
             {
 
                 Debug.Log($"Found: {hit.collider.transform.name}");
-                textMesh.SetText(hit.collider.transform.name);
+                //textMesh.SetText(hit.collider.transform.name);
 
             }
             else
             {
 
-                textMesh.SetText("");
+                //textMesh.SetText("");
 
             }
 
-        }*/
+        }
 
     }
 }

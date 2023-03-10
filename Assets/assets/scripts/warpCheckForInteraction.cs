@@ -9,6 +9,7 @@ public class warpCheckForInteraction : MonoBehaviour
     public GameObject ship;
     public warpCheckRaycast ray;
     public TextMeshProUGUI warpText;
+    public GameObject cancelText;
     public Collider currentlyAligned;
     public GameObject warpButton;
     public Collider warpButtonCollider;
@@ -36,6 +37,15 @@ public class warpCheckForInteraction : MonoBehaviour
 
     public bool canWarp = false;
 
+    public GameObject warpTunnel;
+    public Transform warpParent;
+    public Transform warpTunnelStart;
+    public bool warpHasRun = false;
+    public bool warpCanRun = true;
+    public bool warpCanCancel = false;
+    //public bool warpActive = false;
+
+    public Transform shipWarpOrigin;
 
     void Start()
     {
@@ -117,13 +127,59 @@ public class warpCheckForInteraction : MonoBehaviour
 
         }
 
-        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.001f)
+        if (warpHasRun)
         {
 
-            startWarp();
+            warpButtonCollider.enabled = true;
 
         }
 
+        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.001f && !warpHasRun && warpCanRun)
+        {
+
+            startWarp();
+            warpHasRun = true;
+            warpCanRun = false;
+
+        }
+
+        if (warpHasRun)
+        {
+
+            cancelText.SetActive(true);
+
+        }
+
+        if (warpHasRun && rightHand.triggerPressed <= 0.001f)
+        {
+
+            warpCanCancel = true;
+
+        }
+
+        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.001f && warpHasRun && warpCanCancel)
+        {
+
+            cancelWarp();
+            warpHasRun = false;
+
+        }
+
+        if (!warpHasRun)
+        {
+
+            cancelText.SetActive(false);
+
+        }
+
+        if (!warpHasRun && rightHand.triggerPressed <= 0.001f)
+        {
+
+            warpCanRun = true;
+            warpCanCancel = false;
+
+        }
+        
 
     }
 
@@ -131,6 +187,23 @@ public class warpCheckForInteraction : MonoBehaviour
     {
 
         Debug.Log("warp triggered");
+        Instantiate(warpTunnel, shipWarpOrigin.position, shipWarpOrigin.rotation);
 
     }
+
+    void cancelWarp()
+    {
+
+        Debug.Log("warp canceled");
+        GameObject[] warpTunnels = GameObject.FindGameObjectsWithTag("tunnelSpawn");
+
+        foreach (GameObject warpTunnel in warpTunnels)
+        {
+
+            Destroy(warpTunnel);
+
+        }
+
+    }
+
 }
