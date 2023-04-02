@@ -38,7 +38,7 @@ public class mapCheckForInteraction : MonoBehaviour
 
         rightHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out triggerPressed);
 
-        if (triggerPressed <= 0.001f)
+        if (triggerPressed <= 0.5f)
         {
 
             //Debug.Log("no longer pressed");
@@ -46,7 +46,7 @@ public class mapCheckForInteraction : MonoBehaviour
 
         }
 
-        if (triggerPressed > 0.001f)
+        if (triggerPressed > 0.5f)
         {
 
             //Debug.Log("pressed");
@@ -57,7 +57,7 @@ public class mapCheckForInteraction : MonoBehaviour
 
         currentlySelectedRight = rightHandRaycast.hit.collider;
 
-        if (currentlySelectedRight == myCollider && triggerPressed > 0.001f)
+        if (currentlySelectedRight == myCollider && triggerPressed > 0.5f)
         {
 
             mapSpawner.spawnMap();

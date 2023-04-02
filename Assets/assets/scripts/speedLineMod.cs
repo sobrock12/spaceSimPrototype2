@@ -70,7 +70,7 @@ public class speedLineMod : MonoBehaviour
 
             main.simulationSpeed = shipSpeed/2;
 
-            trail.widthOverTrail = 0.0005f * shipSpeed;
+            trail.widthOverTrail = Mathf.Clamp(0.0005f * shipSpeed, 0f, .01f);
 
         }
 

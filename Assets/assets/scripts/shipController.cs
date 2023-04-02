@@ -23,6 +23,9 @@ public class shipController : MonoBehaviour
     public float strafeSpeed = 0.1f;
     public Vector3 strafe;
     public bool backwardsThrust;
+    public warpCheckForInteraction warpActive;
+    public bool insideWarp = false;
+    public GameObject warpButton;
 
 
     void Start()
@@ -30,6 +33,7 @@ public class shipController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         //speedLimitCollider = speedLimitColliderObject.GetComponent<speedLimiter>();
+        warpActive = warpButton.GetComponent<warpCheckForInteraction>();
 
     }
 
@@ -47,6 +51,41 @@ public class shipController : MonoBehaviour
         Vector2 strafeMovementVector;
         float rotateRight;
         float rotateLeft;
+        /*
+        if (warpActive.warpHasRun && insideWarp)
+        {
+
+            maxSpeed = 1000.0f;
+
+        }
+
+        if (!insideWarp)
+        {
+
+            maxSpeed = 25.0f;
+            if (shipSpeed > 25.0f)
+            {
+
+                shipSpeed = 25.0f;
+
+            }
+
+        }
+
+        if (!warpActive.warpHasRun)
+        {
+
+            maxSpeed = 25.0f;
+            insideWarp = false;
+
+            if (shipSpeed > 25.0f)
+            {
+
+                shipSpeed = 25.0f;
+
+            }
+
+        }*/
 
         if (rightHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxis, out turnMovementVector))
         {

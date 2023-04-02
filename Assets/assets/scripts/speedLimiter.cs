@@ -5,16 +5,58 @@ using UnityEngine;
 public class speedLimiter : MonoBehaviour
 {
 
-    public float speedLimit = 10f;
+    public float currentSpeed;
+    public float normalSpeedLimit = 25.0f;
+    public float speedInCollider = 50.0f;
 
-    private void OnTriggerEnter(Collider other)
+    public GameObject player;
+    public shipController ship;
+
+    public Collider shipCollider;
+
+    void Awake()
     {
-        speedLimit = 3f;
+        StartCoroutine(wait());
+        //player = GameObject.Find("ship1");
+        //ship = player.GetComponent<shipController>();
+        //shipCollider = player.GetComponent<BoxCollider>();
+
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator wait()
     {
-        speedLimit = 10f;
+
+        yield return new WaitForSeconds(1);
+
+        player = GameObject.Find("ship1");
+        ship = player.GetComponent<shipController>();
+        shipCollider = player.GetComponent<BoxCollider>();
+
+
+    }
+
+    private void OnTriggerEnter(Collider shipCollider)
+    {        
+        
+        ship.insideWarp = true;
+        currentSpeed = speedInCollider;
+        ship.shipSpeed = currentSpeed;
+        ship.strafeSpeed = 30.0f;
+        ship.rotateRate = 60.0f;
+        ship.turnSpeed = 0.75f;
+
+    }
+
+    private void OnTriggerExit(Collider shipCollider)
+    {
+
+        ship.insideWarp = false;
+        currentSpeed = normalSpeedLimit;
+        ship.shipSpeed = currentSpeed;
+        ship.strafeSpeed = 1.5f;
+        ship.rotateRate = 30.0f;
+        ship.turnSpeed = 0.25f;
+
     }
 
 

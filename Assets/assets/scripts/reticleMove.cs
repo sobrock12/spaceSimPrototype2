@@ -35,7 +35,7 @@ public class reticleMove : MonoBehaviour
             leftRight = movementVector.x / movementSpeed;
             upDown = movementVector.y / movementSpeed;
 
-            reticlePosition.anchoredPosition3D = new Vector3(leftRight, upDown, 0.0f);
+            reticlePosition.anchoredPosition3D = new Vector3(leftRight, upDown, reticlePosition.anchoredPosition3D.z);
 
 
         }

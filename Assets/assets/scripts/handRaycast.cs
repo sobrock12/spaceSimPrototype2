@@ -7,19 +7,33 @@ using TMPro;
 public class handRaycast : MonoBehaviour
 {
 
-    public GameObject hand;
-    public LineRenderer lineOffset;
+    public GameObject rightHand;
+    public GameObject leftHand;
+    public LineRenderer rightLineOffset;
+    public LineRenderer leftLineOffset;
     public float distance = 10f;
+    public float shootDistance = 100.0f;
     public TextMeshProUGUI textMesh;
+
     [SerializeField] private LayerMask WhatCanIHit = 11;
+    [SerializeField] private LayerMask WhatCanIShoot;
+
     public RaycastHit hit;
+
+    public RaycastHit shootHit;
+
+    public bool rightTriggerFull = false;
+    public bool leftTriggerFull = false;
 
 
     void Start()
     {
         
-        lineOffset = hand.GetComponent<LineRenderer>();
-        //textMesh = GetComponent<TextMeshProUGUI>();
+        rightLineOffset = rightHand.GetComponent<LineRenderer>();
+        rightLineOffset.widthMultiplier = 0;
+        leftLineOffset= leftHand.GetComponent<LineRenderer>();
+        leftLineOffset.widthMultiplier = 0;
+
 
     }
 
@@ -27,14 +41,85 @@ public class handRaycast : MonoBehaviour
     void Update()
     {
 
+        var rightHand = new List<UnityEngine.XR.InputDevice>();
+        var leftHand = new List<UnityEngine.XR.InputDevice>();
+        UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHand);
+        UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHand);
+
+
         //RaycastHit hit;
 
-        Vector3 offset = lineOffset.GetPosition(1);
+        Vector3 offset = rightLineOffset.GetPosition(1);
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(offset) * distance, Color.red);
+        if (rightHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out var rightTrigger))
+        {
+            if (rightTrigger <= 0.001f)
+            {
+
+                //Debug.Log("right trigger not pulled");
+                rightLineOffset.widthMultiplier = 0;
+                rightTriggerFull = false;
+
+            }
+
+            if (rightTrigger < 0.75f && rightTrigger > 0.001f)
+            {
+                
+                //Debug.Log("right trigger gently pulled");
+                rightLineOffset.widthMultiplier = rightTrigger;
+                rightTriggerFull = false;
+
+            }
+
+            if (rightTrigger > 0.751f)
+            {
+
+                //Debug.Log("right trigger fully pulled");
+                rightLineOffset.widthMultiplier = rightTrigger;
+                rightTriggerFull = true;
+
+            }
+
+        }
+
+        if (leftHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out var leftTrigger))
+        {
+
+            if (leftTrigger <= 0.001f)
+            {
+
+                //Debug.Log("left trigger not pulled");
+                leftLineOffset.widthMultiplier = 0;
+                leftTriggerFull = false;
+
+            }
+
+            if (leftTrigger < 0.75f && leftTrigger > 0.001f)
+            {
+
+                //Debug.Log("left trigger gently pulled");
+                leftLineOffset.widthMultiplier = leftTrigger;
+                leftTriggerFull = false;
+
+            }
+
+            if (leftTrigger > 0.751f)
+            {
+
+                //Debug.Log("left trigger fully pulled");
+                leftLineOffset.widthMultiplier = leftTrigger;
+                leftTriggerFull = true;
+
+
+            }
+
+        }
+
+        Debug.DrawRay(transform.position, transform.TransformDirection(offset) * shootDistance, Color.red);
 
         Physics.Raycast(transform.position, transform.TransformDirection(offset), out hit, distance, WhatCanIHit);
 
+        Physics.Raycast(transform.position, transform.TransformDirection(offset), out shootHit, shootDistance, WhatCanIShoot);
 
         
         if (hit.collider != null)

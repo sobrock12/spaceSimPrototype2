@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+using Unity.VisualScripting;
+using System;
 
 public class warpCheckForInteraction : MonoBehaviour
 {
 
+    public GameObject player;
     public GameObject ship;
     public warpCheckRaycast ray;
     public TextMeshProUGUI warpText;
@@ -14,6 +18,7 @@ public class warpCheckForInteraction : MonoBehaviour
     public GameObject warpButton;
     public Collider warpButtonCollider;
     public mapCheckForInteraction rightHand;
+    public Transform targetedDest;
 
     public GameObject sun;
     public Collider sunCollider;
@@ -43,14 +48,27 @@ public class warpCheckForInteraction : MonoBehaviour
     public bool warpHasRun = false;
     public bool warpCanRun = true;
     public bool warpCanCancel = false;
-    //public bool warpActive = false;
 
     public Transform shipWarpOrigin;
+    public Transform shipWarpOriginReset;
+
+    public List <GameObject> tunnelsSpawned = new List<GameObject>();
+
+    public Transform lastAdded;
+
+    public float totalDistance;
+    public float sqDist;
+    public int numOfTunnels;
+    public float tunnelLimit = 0.95f;
+
+
+    public shipController shipCont;
 
     void Start()
     {
 
         ray = ship.GetComponent<warpCheckRaycast>();
+        shipCont = player.GetComponent<shipController>();
         sunCollider = sun.GetComponent<SphereCollider>();
         terraCollider = terra.GetComponent<SphereCollider>();
         gasCollider = gas.GetComponent<SphereCollider>();
@@ -134,12 +152,13 @@ public class warpCheckForInteraction : MonoBehaviour
 
         }
 
-        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.001f && !warpHasRun && warpCanRun)
+        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.5f && !warpHasRun && warpCanRun)
         {
-
+            shipWarpOrigin = shipWarpOriginReset;
             startWarp();
             warpHasRun = true;
             warpCanRun = false;
+            targetedDest = ray.transform;
 
         }
 
@@ -148,19 +167,34 @@ public class warpCheckForInteraction : MonoBehaviour
 
             cancelText.SetActive(true);
 
+            /*
+            currentDistance = ((targetedDest.position.x * targetedDest.position.x) +
+                                (targetedDest.position.y * targetedDest.position.y) +
+                                (targetedDest.position.z * targetedDest.position.z));
+
+            currentSqDist = Mathf.Sqrt(currentDistance);
+
+            currentlyAlignedTunnel = (int)Mathf.Ceil((currentSqDist / 2000f) * tunnelLimit);
+
+            tunnelToSelect = (tunnelsSpawned.Count - currentlyAlignedTunnel);
+
+            tunnelForSpeed = tunnelsSpawned[tunnelToSelect];
+            */
+
         }
 
-        if (warpHasRun && rightHand.triggerPressed <= 0.001f)
+        if (warpHasRun && rightHand.triggerPressed <= 0.5f)
         {
 
             warpCanCancel = true;
 
         }
 
-        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.001f && warpHasRun && warpCanCancel)
+        if (rightHand.currentlySelectedRight == warpButtonCollider && rightHand.triggerPressed > 0.5f && warpHasRun && warpCanCancel)
         {
 
             cancelWarp();
+            speedReset();
             warpHasRun = false;
 
         }
@@ -172,22 +206,39 @@ public class warpCheckForInteraction : MonoBehaviour
 
         }
 
-        if (!warpHasRun && rightHand.triggerPressed <= 0.001f)
+        if (!warpHasRun && rightHand.triggerPressed <= 0.5f)
         {
 
             warpCanRun = true;
             warpCanCancel = false;
 
-        }
-        
+        }        
 
     }
 
     void startWarp()
     {
 
-        Debug.Log("warp triggered");
-        Instantiate(warpTunnel, shipWarpOrigin.position, shipWarpOrigin.rotation);
+        totalDistance = ((ray.hit.transform.position.x * ray.hit.transform.position.x) + 
+                            (ray.hit.transform.position.y * ray.hit.transform.position.y) +
+                            (ray.hit.transform.position.z * ray.hit.transform.position.z));
+
+        sqDist = Mathf.Sqrt(totalDistance);
+
+        numOfTunnels = (int)Mathf.Ceil((sqDist / 2000f) * tunnelLimit);
+
+        for (int i = 0; i < numOfTunnels; i++)
+        {
+
+            Debug.Log("warp triggered");
+            GameObject newTunnel = (GameObject)Instantiate(warpTunnel, shipWarpOrigin.position, shipWarpOrigin.rotation);
+            tunnelsSpawned.Add(newTunnel);
+
+            lastAdded = tunnelsSpawned.Last().transform.Find("endpoint");
+
+            shipWarpOrigin = lastAdded;
+
+        }
 
     }
 
@@ -199,10 +250,31 @@ public class warpCheckForInteraction : MonoBehaviour
 
         foreach (GameObject warpTunnel in warpTunnels)
         {
+            
+            tunnelsSpawned.Remove(warpTunnel);
 
             Destroy(warpTunnel);
 
+        } 
+        
+        return;
+
+    }
+
+    void speedReset()
+    {
+
+        Debug.Log("speeds reset i hope");
+
+        if (shipCont.shipSpeed > 25.0f)
+        {
+
+            shipCont.shipSpeed = 25.0f;
+
         }
+
+
+        shipCont.strafeSpeed = 1.5f;
 
     }
 
