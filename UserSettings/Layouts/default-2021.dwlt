@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1397
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 77
+  controlID: 58
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,8 +171,8 @@ MonoBehaviour:
     y: 0
     width: 389
     height: 541
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -361,7 +361,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 28892
+  m_LastSelectedObjectID: 29034
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -952,9 +952,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.0332031, y: 5.850425, z: 11.601301}
+    m_Target: {x: -4.9975185, y: 1.269986, z: -14.306282}
     speed: 2
-    m_Value: {x: -1.0332031, y: 5.850425, z: 11.601301}
+    m_Value: {x: -4.9975185, y: 1.269986, z: -14.306282}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1001,20 +1001,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.023997532, y: 0.0014993295, z: -0.00003584035, w: 0.9997132}
+    m_Target: {x: 0.2617998, y: -0.573896, z: 0.20042984, w: 0.7496232}
     speed: 2
-    m_Value: {x: 0.025497045, y: -0.0000002413734, z: 0.00000015633888, w: 0.9996749}
+    m_Value: {x: 0.26179945, y: -0.5738952, z: 0.20042957, w: 0.7496222}
   m_Size:
-    m_Target: 27.030987
+    m_Target: 14.972128
     speed: 2
-    m_Value: 27.030987
+    m_Value: 14.972128
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_CameraSettings:
-    m_Speed: 0.01
-    m_SpeedNormalized: 0
+    m_Speed: 3.0039995
+    m_SpeedNormalized: 0.5999999
     m_SpeedMin: 0.01
     m_SpeedMax: 5
     m_EasingEnabled: 1
@@ -2088,22 +2088,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/assets/prefabs
+    - Assets/assets/scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/assets/prefabs
+  - Assets/assets/scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\sobro\Documents\Unity Projects\FF_BIR - master
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 64820000
-    m_LastClickedID: 33380
-    m_ExpandedIDs: 000000005c8200005e82000060820000628200006482000000ca9a3b
+    m_SelectedIDs: c2820000
+    m_LastClickedID: 33474
+    m_ExpandedIDs: 000000008c8200008e82000090820000928200009482000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2131,7 +2131,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005c8200005e820000608200006282000064820000
+    m_ExpandedIDs: 000000008c8200008e820000908200009282000094820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2162,18 +2162,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000425e0000726300004266000086660000a0790000000000006a7400008282000084820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: reticleSmoothMove
+      m_OriginalName: reticleSmoothMove
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 55900
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 4}
     m_CreateAssetUtility:
@@ -2259,9 +2259,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: bcf6fdff
-      m_LastClickedID: -133444
-      m_ExpandedIDs: 00fbffff246e00008a7000008e730000
+      m_SelectedIDs: 6a710000
+      m_LastClickedID: 29034
+      m_ExpandedIDs: e6f4ffffd2faffff00fbffff246e00008c700000de700000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
