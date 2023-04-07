@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class weaponFire : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class weaponFire : MonoBehaviour
 
     public float offset;
 
-    public handRaycast leftHandCast;
+    public leftHandRaycast leftHandCast;
+    public handRaycast leftHandCast2;
     public handRaycast rightHandCast;
 
     public GameObject leftReticle;
@@ -33,13 +35,33 @@ public class weaponFire : MonoBehaviour
 
     public Transform referencePoint;
 
+    public Transform leftEmptyAim;
+    public Transform rightEmptyAim;
+
     public bool leftCanShoot = false;
     public bool rightCanShoot = false;
+
+    public GameObject projectile;
+
+    public Transform leftProjectileOrigin;
+    public Transform rightProjectileOrigin;
+
+    public float rightTimer = 0.0f;
+    public float leftTimer = 0.0f;
+
+    public float correctedRightTimer;
+    public float correctedLeftTimer;
+
+    public float fireRate = 1.0f;
+
+    public TextMeshPro left;
+    public TextMeshPro right;
 
     void Start()
     {
         
-        leftHandCast = leftHand.GetComponent<handRaycast>();
+        leftHandCast2 = leftHand.GetComponent<handRaycast>();
+        leftHandCast = leftHand.GetComponent<leftHandRaycast>();
         rightHandCast = rightHand.GetComponent<handRaycast>();
 
         leftLineOffset = leftHand.GetComponent<LineRenderer>();
@@ -51,9 +73,19 @@ public class weaponFire : MonoBehaviour
     void Update()
     {
 
-        RaycastHit leftHit = leftHandCast.shootHit;
+        rightTimer += Time.deltaTime;
+        leftTimer += Time.deltaTime;
 
-        RaycastHit rightHit = rightHandCast.shootHit;
+        correctedRightTimer = Mathf.Clamp(rightTimer, 0.0f, 1.1f);
+        correctedLeftTimer = Mathf.Clamp(leftTimer, 0.0f, 1.1f);
+
+        RaycastHit leftHit = leftHandCast.uiHit;
+
+        RaycastHit rightHit = rightHandCast.uiHit;
+
+        RaycastHit leftShootHit = leftHandCast.shootHit;
+
+        RaycastHit rightShootHit = rightHandCast.shootHit;
 
         if (rightHit.collider == null)
         {
@@ -72,10 +104,38 @@ public class weaponFire : MonoBehaviour
 
         }
 
+        if (leftShootHit.collider != null)
+        {
+
+            leftWeapon.transform.LookAt(leftShootHit.point);
+
+        }
+
+        if (leftShootHit.collider == null)
+        {
+
+            leftWeapon.transform.LookAt(leftEmptyAim);
+
+        }
+
+        if (rightShootHit.collider != null)
+        {
+
+            rightWeapon.transform.LookAt(rightShootHit.point);
+
+        }
+
+        if (rightShootHit.collider == null)
+        {
+
+            rightWeapon.transform.LookAt(rightEmptyAim);
+
+        }
+
         if (rightHit.collider != null)
         {        
             
-            rightWeapon.transform.LookAt(rightHit.point);
+            //rightWeapon.transform.LookAt(rightHit.point);
 
             rightReticle.SetActive(true);
             if (rightHit.collider.CompareTag("aimingBorder"))
@@ -85,11 +145,19 @@ public class weaponFire : MonoBehaviour
 
             }
 
-            if (rightHandCast.rightTriggerFull == true)
+            if (rightHandCast.rightTriggerFull == true && rightTimer > fireRate)
             {
 
                 Debug.Log("shoot right");
                 rightCanShoot = true;
+
+                if (rightCanShoot == true)
+                {
+
+                    Instantiate(projectile, rightProjectileOrigin.transform.position, rightWeapon.transform.rotation);
+                    rightTimer = 0.0f;
+
+                }
 
             }
 
@@ -98,7 +166,7 @@ public class weaponFire : MonoBehaviour
         if (leftHit.collider != null)
         {        
             
-            leftWeapon.transform.LookAt(leftHit.point);
+            //leftWeapon.transform.LookAt(leftHit.point);
 
             leftReticle.SetActive(true);
             if (leftHit.collider.CompareTag("aimingBorder"))
@@ -108,14 +176,49 @@ public class weaponFire : MonoBehaviour
 
             }
 
-            if (leftHandCast.leftTriggerFull == true)
-
+            if (leftHandCast2.leftTriggerFull == true && leftTimer > fireRate)
             {
 
                 Debug.Log("shoot left");
                 leftCanShoot = true;
 
+                if (leftCanShoot == true)
+                {
+
+                    Instantiate(projectile, leftProjectileOrigin.transform.position, leftWeapon.transform.rotation);
+                    leftTimer= 0.0f;
+
+                }
+
             }
+
+        }
+
+        if (rightTimer > 1.0f)
+        {
+
+            right.color = Color.green;
+
+        }
+
+        if (rightTimer < 1.0f)
+        {
+
+            right.color = Color.red;
+
+        }
+
+        if (leftTimer > 1.0f)
+        {
+
+            left.color = Color.green;
+
+        }
+
+        if (leftTimer < 1.0f)
+        {
+
+            left.color = Color.red;
 
         }
 

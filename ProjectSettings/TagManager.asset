@@ -12,7 +12,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ship
   - Water
   - UI
   - strafe stop layer
@@ -22,7 +22,7 @@ TagManager:
   - planet plane collider
   - selectable
   - aimingBorder
-  - 
+  - projectile
   - 
   - 
   - 

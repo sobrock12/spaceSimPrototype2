@@ -12,13 +12,17 @@ public class handRaycast : MonoBehaviour
     public LineRenderer rightLineOffset;
     public LineRenderer leftLineOffset;
     public float distance = 10f;
+    public float uiDistance = 100.0f;
     public float shootDistance = 100.0f;
     public TextMeshProUGUI textMesh;
 
     [SerializeField] private LayerMask WhatCanIHit = 11;
-    [SerializeField] private LayerMask WhatCanIShoot;
+    [SerializeField] private LayerMask aimingBorder;
+    [SerializeField] private LayerMask whatCanIShoot;
 
     public RaycastHit hit;
+
+    public RaycastHit uiHit;
 
     public RaycastHit shootHit;
 
@@ -50,6 +54,7 @@ public class handRaycast : MonoBehaviour
         //RaycastHit hit;
 
         Vector3 offset = rightLineOffset.GetPosition(1);
+        Vector3 leftOffset = leftLineOffset.GetPosition(1);
 
         if (rightHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out var rightTrigger))
         {
@@ -115,11 +120,13 @@ public class handRaycast : MonoBehaviour
 
         }
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(offset) * shootDistance, Color.red);
+        Debug.DrawRay(transform.position, transform.TransformDirection(offset) * uiDistance, Color.red);
 
         Physics.Raycast(transform.position, transform.TransformDirection(offset), out hit, distance, WhatCanIHit);
 
-        Physics.Raycast(transform.position, transform.TransformDirection(offset), out shootHit, shootDistance, WhatCanIShoot);
+        Physics.Raycast(transform.position, transform.TransformDirection(offset), out uiHit, uiDistance, aimingBorder);
+
+        Physics.Raycast(transform.position, transform.TransformDirection(offset), out shootHit, shootDistance, whatCanIShoot);
 
         
         if (hit.collider != null)
