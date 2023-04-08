@@ -108,8 +108,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8393734012928502019}
   - component: {fileID: 2892083859527633250}
-  - component: {fileID: 2311234055089754334}
+  - component: {fileID: 109776800622020647}
   - component: {fileID: 8124740689879374081}
+  - component: {fileID: 8591898480772668264}
   m_Layer: 13
   m_Name: projectile
   m_TagString: Untagged
@@ -126,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 8573867114637783202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38128, y: 0.38128, z: 18.100544}
+  m_LocalScale: {x: 0.38128, y: 0.38128, z: 10.78}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9024708051049555614}
@@ -149,7 +150,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &2311234055089754334
+--- !u!114 &109776800622020647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,8 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccf86712a03ba54aa60e54d059e5bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 50
   rb: {fileID: 0}
+  spark: {fileID: 6382874089180857322, guid: 479fb80c7aa81ba41b1b1276b7a8b595, type: 3}
+  sparkRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &8124740689879374081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +178,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7b841ee2ec1d64da67e143753b3e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8591898480772668264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573867114637783202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a02bfc557102040887d5277d3c5c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  inverseVar: {fileID: 0}
+  shipController: {fileID: 0}
+  inverseDir: {x: 0, y: 0, z: 0}
+  finalRight: {x: 0, y: 0, z: 0}
+  finalUp: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+  leftRightStrafeAmount: 0
+  upDownStrafeAmount: 0
+  strafeSpeed: 0
+  backwardsThrust: 0
+  backwardsSpeed: 1

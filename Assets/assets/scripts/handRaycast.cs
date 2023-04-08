@@ -35,7 +35,7 @@ public class handRaycast : MonoBehaviour
         
         rightLineOffset = rightHand.GetComponent<LineRenderer>();
         rightLineOffset.widthMultiplier = 0;
-        leftLineOffset= leftHand.GetComponent<LineRenderer>();
+        leftLineOffset = leftHand.GetComponent<LineRenderer>();
         leftLineOffset.widthMultiplier = 0;
 
 
@@ -120,7 +120,7 @@ public class handRaycast : MonoBehaviour
 
         }
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(offset) * uiDistance, Color.red);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(offset) * uiDistance, Color.red);
 
         Physics.Raycast(transform.position, transform.TransformDirection(offset), out hit, distance, WhatCanIHit);
 

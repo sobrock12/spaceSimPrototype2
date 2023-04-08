@@ -13,16 +13,13 @@ public class weaponFire : MonoBehaviour
     public LineRenderer leftLineOffset;
     public LineRenderer rightLineOffset;
 
-    public float offset;
+    //public float offset;
 
     public leftHandRaycast leftHandCast;
-    public handRaycast leftHandCast2;
     public handRaycast rightHandCast;
 
     public GameObject leftReticle;
     public GameObject rightReticle;
-
-    [SerializeField] private LayerMask WhatCanIHit = 12;
 
     public float distance = 75.0f;
 
@@ -60,7 +57,6 @@ public class weaponFire : MonoBehaviour
     void Start()
     {
         
-        leftHandCast2 = leftHand.GetComponent<handRaycast>();
         leftHandCast = leftHand.GetComponent<leftHandRaycast>();
         rightHandCast = rightHand.GetComponent<handRaycast>();
 
@@ -79,11 +75,11 @@ public class weaponFire : MonoBehaviour
         correctedRightTimer = Mathf.Clamp(rightTimer, 0.0f, 1.1f);
         correctedLeftTimer = Mathf.Clamp(leftTimer, 0.0f, 1.1f);
 
-        RaycastHit leftHit = leftHandCast.uiHit;
+        RaycastHit leftHit = leftHandCast.leftUIHit;
 
         RaycastHit rightHit = rightHandCast.uiHit;
 
-        RaycastHit leftShootHit = leftHandCast.shootHit;
+        RaycastHit leftShootHit = leftHandCast.leftShootHit;
 
         RaycastHit rightShootHit = rightHandCast.shootHit;
 
@@ -132,11 +128,16 @@ public class weaponFire : MonoBehaviour
 
         }
 
+        if (rightHandCast.rightTriggerFull == false)
+        {
+
+            rightCanShoot = false;
+
+        }
+
         if (rightHit.collider != null)
         {        
             
-            //rightWeapon.transform.LookAt(rightHit.point);
-
             rightReticle.SetActive(true);
             if (rightHit.collider.CompareTag("aimingBorder"))
             {
@@ -163,11 +164,16 @@ public class weaponFire : MonoBehaviour
 
         }
 
+        if (rightHandCast.leftTriggerFull == false)
+        {
+
+            leftCanShoot = false;
+
+        }
+
         if (leftHit.collider != null)
         {        
             
-            //leftWeapon.transform.LookAt(leftHit.point);
-
             leftReticle.SetActive(true);
             if (leftHit.collider.CompareTag("aimingBorder"))
             {
@@ -176,7 +182,7 @@ public class weaponFire : MonoBehaviour
 
             }
 
-            if (leftHandCast2.leftTriggerFull == true && leftTimer > fireRate)
+            if (rightHandCast.leftTriggerFull == true && leftTimer > fireRate)
             {
 
                 Debug.Log("shoot left");

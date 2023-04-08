@@ -12,6 +12,8 @@ public class leftReticleSmoothMove : MonoBehaviour
 
     public float smoothTime = 0.085f;
 
+    public RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class leftReticleSmoothMove : MonoBehaviour
     void Update()
     {
 
-        RaycastHit hit = handCast.uiHit;
+        hit = handCast.leftUIHit;
 
         transform.position = Vector3.SmoothDamp(transform.position, hit.point, ref velocity, smoothTime);
         

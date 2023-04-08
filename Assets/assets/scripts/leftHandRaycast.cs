@@ -14,9 +14,9 @@ public class leftHandRaycast : MonoBehaviour
     [SerializeField] private LayerMask aimingBorder;
     [SerializeField] private LayerMask whatCanIShoot;
 
-    public RaycastHit uiHit;
+    public RaycastHit leftUIHit;
 
-    public RaycastHit shootHit;
+    public RaycastHit leftShootHit;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +32,9 @@ public class leftHandRaycast : MonoBehaviour
 
         Vector3 leftOffset = leftLineOffset.GetPosition(1);
 
-        Physics.Raycast(transform.position, transform.TransformDirection(leftOffset), out uiHit, aimingBorder);
+        Physics.Raycast(transform.position, transform.TransformDirection(leftOffset), out leftUIHit, uiDistance, aimingBorder);
 
-        Physics.Raycast(transform.position, transform.TransformDirection(leftOffset), out shootHit, whatCanIShoot);
+        Physics.Raycast(transform.position, transform.TransformDirection(leftOffset), out leftShootHit, shootDistance, whatCanIShoot);
         
     }
 }
