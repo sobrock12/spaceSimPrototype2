@@ -275,6 +275,9 @@ public class warpCheckForInteraction : MonoBehaviour
 
 
         shipCont.strafeSpeed = 1.5f;
+        shipCont.rotateRate = 30.0f;
+        shipCont.turnSpeed = 0.25f;
+
 
     }
 

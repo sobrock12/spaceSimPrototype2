@@ -160,7 +160,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28066
+  m_Name: pb_Mesh28086
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -841,7 +841,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29178
+  m_Name: pb_Mesh29196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19209,6 +19209,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 789532149524142634, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: maxSpeed
       value: 25
@@ -19526,6 +19530,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2836210179677733082, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
   m_PrefabInstance: {fileID: 1476497817}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1476497820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5984949688823395438, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
+  m_PrefabInstance: {fileID: 1476497817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476497821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476497820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d685722b1a232874d826ed97a5a1be41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  press: 0
+  distance: 100
+  hitDist: 0
+  multiplier: 17.5
+  mineable:
+    serializedVersion: 2
+    m_Bits: 1
+  laser: {fileID: 1903257957}
 --- !u!1 &1484577096
 GameObject:
   m_ObjectHideFlags: 0
@@ -25159,6 +25188,11 @@ Transform:
   m_Father: {fileID: 219532888}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1903257957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3207694313721658783, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
+  m_PrefabInstance: {fileID: 1476497817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1907516840
 GameObject:
   m_ObjectHideFlags: 0
@@ -25965,7 +25999,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28172
+  m_Name: pb_Mesh28192
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
