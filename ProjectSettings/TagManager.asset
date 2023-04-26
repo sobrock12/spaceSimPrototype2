@@ -23,8 +23,8 @@ TagManager:
   - selectable
   - aimingBorder
   - projectile
-  - 
-  - 
+  - enemyShip
+  - enemyProjectile
   - 
   - 
   - 
