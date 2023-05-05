@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 109776800622020647}
   - component: {fileID: 8124740689879374081}
   - component: {fileID: 8591898480772668264}
+  - component: {fileID: 1726650451782967962}
   m_Layer: 15
   m_Name: enemyProjectile
   m_TagString: Untagged
@@ -202,3 +203,18 @@ MonoBehaviour:
   strafeSpeed: 0
   backwardsThrust: 0
   backwardsSpeed: 1
+--- !u!114 &1726650451782967962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573867114637783202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af49bdc48e428b9479193e161f1730f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objHit: {fileID: 0}
+  stats: {fileID: 0}
+  damageVal: 10

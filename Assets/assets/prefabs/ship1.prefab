@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 2608789072907433777}
   - component: {fileID: 7544441231455563054}
   - component: {fileID: 1039159419758720262}
-  - component: {fileID: 2522157914166310118}
+  - component: {fileID: 7228905713397547877}
   m_Layer: 0
   m_Name: ship1
   m_TagString: Untagged
@@ -564,7 +564,7 @@ MonoBehaviour:
   warpActive: {fileID: 0}
   insideWarp: 0
   warpButton: {fileID: 0}
---- !u!114 &2522157914166310118
+--- !u!114 &7228905713397547877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,9 +573,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4750562294214651622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7e0219e14fde074d89004208b6b0079, type: 3}
+  m_Script: {fileID: 11500000, guid: d16d1c1dc17766043af06e9d741220c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max: 100
+  currentHealth: 0
+  currentShield: 0
+  currentFuel: 0
 --- !u!1 &4857073155841254932
 GameObject:
   m_ObjectHideFlags: 0

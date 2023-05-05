@@ -138,9 +138,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2683672977637949332}
   - component: {fileID: 7323895487506254192}
-  - component: {fileID: 4009676955222800366}
   - component: {fileID: 5046495085827495747}
   - component: {fileID: 6592309508730293738}
+  - component: {fileID: 8922809676880938922}
   m_Layer: 14
   m_Name: testTurret
   m_TagString: Untagged
@@ -181,19 +181,6 @@ MonoBehaviour:
   projectile: {fileID: 8573867114637783202, guid: 4362da2b41daf0345991d43a816ade6d, type: 3}
   projOrigin: {fileID: 1005105319530528222}
   canFire: 0
---- !u!114 &4009676955222800366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3110622273349288797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7e0219e14fde074d89004208b6b0079, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 100
 --- !u!114 &5046495085827495747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +221,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8922809676880938922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110622273349288797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16d1c1dc17766043af06e9d741220c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max: 30
+  currentHealth: 0
+  currentShield: 0
 --- !u!1 &9028723826281151182
 GameObject:
   m_ObjectHideFlags: 0
