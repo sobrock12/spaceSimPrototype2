@@ -5,16 +5,24 @@ using UnityEngine;
 public class statusVars : MonoBehaviour
 {
 
-    public float max = 100.0f;
+    public float hpMax = 100.0f;
+    public float startingHealth;
     public float currentHealth;
+    /*
+    public float shieldMax = 100.0f;
+    public float startingShield;
     public float currentShield;
+    */
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
 
-        
-        
+        startingHealth = hpMax;
+        currentHealth = startingHealth;
+
+        //currentShield = 0.0f;
+
     }
 
     public void subHealth(float damageAmount)
@@ -29,8 +37,16 @@ public class statusVars : MonoBehaviour
     {
 
         currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, max);
+        currentHealth = Mathf.Clamp(currentHealth, 0, hpMax);
 
     }
+    /*
+    public void subShield(float damageAmount)
+    {
+    
+        currentShield -= damageAmount;
+    
+    }
+    */
 
 }
