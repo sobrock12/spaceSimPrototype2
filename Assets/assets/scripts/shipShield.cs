@@ -44,7 +44,7 @@ public class shipShield : MonoBehaviour
         if (recharge == 1.0f)
         {
 
-            shieldHP = 100.0f;
+            shieldHP = stats.shieldMax;
             shield.SetActive(true);
 
         }
