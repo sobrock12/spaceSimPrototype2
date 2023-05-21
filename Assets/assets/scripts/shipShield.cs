@@ -17,7 +17,6 @@ public class shipShield : MonoBehaviour
 
     public shieldStatusVars stats;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +64,14 @@ public class shipShield : MonoBehaviour
         }
 
         stats.currentShield = shieldHP;
+
+    }
+
+    public void resetVals()
+    {
+
+        recharge = 0.0f;
+        chargeTimer = 0.0f;
 
     }
 

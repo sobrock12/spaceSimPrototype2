@@ -26,8 +26,7 @@ public class projectileHit : MonoBehaviour
             if (shield != null)
             {
 
-                shield.recharge = 0.0f;
-                shield.chargeTimer = 0.0f;
+                shield.resetVals();
 
             }
 

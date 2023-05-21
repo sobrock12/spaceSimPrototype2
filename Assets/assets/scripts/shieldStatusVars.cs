@@ -8,12 +8,14 @@ public class shieldStatusVars : MonoBehaviour
     public float shieldMax = 100.0f;
     public float startingShield;
     public float currentShield;
+    public shieldBlink blink;
 
     // Start is called before the first frame update
     void Start()
     {
 
         currentShield = 0.0f;
+        blink = GetComponentInChildren<shieldBlink>();
 
     }
 
@@ -21,6 +23,7 @@ public class shieldStatusVars : MonoBehaviour
     {
 
         currentShield -= damageAmount;
+        blink.gotHit = true;
 
     }
 
