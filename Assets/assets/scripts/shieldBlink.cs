@@ -14,6 +14,8 @@ public class shieldBlink : MonoBehaviour
 
     public shipShield shield;
 
+    public GameObject shieldInside;
+
     public Material shieldMat;
 
     void Start()
@@ -31,7 +33,7 @@ public class shieldBlink : MonoBehaviour
         //short blink
         if (gotHit == true)
         {
-
+            shieldInside.SetActive(true);
             alphaVar += rate * Time.deltaTime;
             alphaVar = Mathf.Clamp(alphaVar, 0.0f, max);
 
@@ -57,6 +59,7 @@ public class shieldBlink : MonoBehaviour
 
             gotHit = false;
             full = false;
+            shieldInside.SetActive(false);
 
         }
 
