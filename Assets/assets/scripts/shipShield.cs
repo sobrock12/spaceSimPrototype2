@@ -5,6 +5,9 @@ using UnityEngine;
 public class shipShield : MonoBehaviour
 {
 
+    public GameObject ship;
+    public shipController sc;
+    public Rigidbody shipRb;
     public float shieldHP;
     public float recharge = 0.0f;
     public float rechargeRate = 0.5f;
@@ -21,6 +24,8 @@ public class shipShield : MonoBehaviour
     void Start()
     {
 
+        shipRb = ship.GetComponent<Rigidbody>();
+        sc = ship.GetComponent<shipController>();
         stats = player.GetComponent<shieldStatusVars>();
 
     }
@@ -37,6 +42,9 @@ public class shipShield : MonoBehaviour
         {
 
             shield.SetActive(false);
+            shipRb.mass = 1.0f;
+            sc.rotateRate = 125.0f;
+
 
         }
 
@@ -45,6 +53,8 @@ public class shipShield : MonoBehaviour
 
             shieldHP = stats.shieldMax;
             shield.SetActive(true);
+            shipRb.mass = 0.50f;
+            sc.rotateRate = 250.0f;
 
         }
 

@@ -42,7 +42,7 @@ public class speedLimiter : MonoBehaviour
         currentSpeed = speedInCollider;
         ship.shipSpeed = currentSpeed;
         ship.strafeSpeed = 30.0f;
-        ship.rotateRate = 60.0f;
+        ship.rotateRate = 200.0f;
         ship.turnSpeed = 0.75f;
 
     }
@@ -53,9 +53,9 @@ public class speedLimiter : MonoBehaviour
         ship.insideWarp = false;
         currentSpeed = normalSpeedLimit;
         ship.shipSpeed = currentSpeed;
-        ship.strafeSpeed = 1.5f;
-        ship.rotateRate = 30.0f;
-        ship.turnSpeed = 0.25f;
+        ship.strafeSpeed = 5f;
+        ship.rotateRate = 125.0f;
+        ship.turnSpeed = 0.20f;
 
     }
 

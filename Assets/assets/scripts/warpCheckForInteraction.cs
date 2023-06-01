@@ -64,6 +64,8 @@ public class warpCheckForInteraction : MonoBehaviour
 
     public shipController shipCont;
 
+    public GameObject shield;
+
     void Start()
     {
 
@@ -274,9 +276,22 @@ public class warpCheckForInteraction : MonoBehaviour
         }
 
 
-        shipCont.strafeSpeed = 1.5f;
-        shipCont.rotateRate = 30.0f;
-        shipCont.turnSpeed = 0.25f;
+        shipCont.strafeSpeed = 5f;
+        shipCont.turnSpeed = 0.2f;
+
+        if (shield.activeInHierarchy == true)
+        {
+
+            shipCont.rotateRate = 250.0f;
+
+        }
+
+        if (shield.activeInHierarchy == false)
+        {
+
+            shipCont.rotateRate = 125.0f;
+
+        }
 
 
     }
