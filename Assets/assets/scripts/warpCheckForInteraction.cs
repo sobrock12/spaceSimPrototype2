@@ -276,20 +276,20 @@ public class warpCheckForInteraction : MonoBehaviour
         }
 
 
-        shipCont.strafeSpeed = 5f;
-        shipCont.turnSpeed = 0.2f;
+        shipCont.strafeSpeed = 2f;
+        shipCont.turnSpeed = 0.325f;
 
         if (shield.activeInHierarchy == true)
         {
 
-            shipCont.rotateRate = 250.0f;
+            shipCont.rotateRate = 175.0f;
 
         }
 
         if (shield.activeInHierarchy == false)
         {
 
-            shipCont.rotateRate = 125.0f;
+            shipCont.rotateRate = 100.0f;
 
         }
 

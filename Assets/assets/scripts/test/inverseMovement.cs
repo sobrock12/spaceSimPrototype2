@@ -16,7 +16,8 @@ public class inverseMovement : MonoBehaviour
     public float upDownStrafeAmount;
     public float strafeSpeed;
     public bool backwardsThrust;
-    public float backwardsSpeed = 1f;
+    public bool forwardThrust;
+    public float backwardsSpeed = 2.0f;
 
     void Start()
     {
@@ -44,11 +45,19 @@ public class inverseMovement : MonoBehaviour
         upDownStrafeAmount = shipController.upDownStrafe * strafeSpeed;
 
         backwardsThrust = shipController.backwardsThrust;
+        forwardThrust= shipController.forwardThrust;
 
         if (backwardsThrust == true)
         {
 
             rb.AddForce(-inverseDir * backwardsSpeed, ForceMode.VelocityChange);
+
+        }
+
+        if (forwardThrust == true)
+        {
+
+            rb.AddForce(inverseDir * backwardsSpeed, ForceMode.VelocityChange);
 
         }
         

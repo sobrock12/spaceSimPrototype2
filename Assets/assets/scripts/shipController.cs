@@ -23,9 +23,13 @@ public class shipController : MonoBehaviour
     public float strafeSpeed = 0.1f;
     public Vector3 strafe;
     public bool backwardsThrust;
+    public bool canThrust;
+    public bool backThrust;
+    public bool forwardThrust;
     public warpCheckForInteraction warpActive;
     public bool insideWarp = false;
     public GameObject warpButton;
+    public statusVars stats;
 
 
     void Start()
@@ -34,6 +38,7 @@ public class shipController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //speedLimitCollider = speedLimitColliderObject.GetComponent<speedLimiter>();
         warpActive = warpButton.GetComponent<warpCheckForInteraction>();
+        stats = GetComponent<statusVars>();
 
     }
 
@@ -134,16 +139,18 @@ public class shipController : MonoBehaviour
 
             }
 
-            if (subSpeed && shipSpeed == 0f)
+            if (shipSpeed == 0f)
             {
 
-                backwardsThrust = true;
+                canThrust = true;
+                //backwardsThrust = true;
 
             }
 
-            if (!subSpeed || shipSpeed > 0f)
+            if (shipSpeed > 0f)
             {
 
+                canThrust = false;
                 backwardsThrust = false;
 
             }
@@ -160,6 +167,50 @@ public class shipController : MonoBehaviour
 
         }
 
+        if (rightHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out backThrust))
+        {
+
+            if (canThrust && backThrust)
+            {
+
+                backwardsThrust = true;
+
+            }
+
+            if (!backThrust || !canThrust)
+            {
+
+                backwardsThrust = false;
+
+            }
+
+        }
+
+        if (leftHand[0].TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out forwardThrust))
+        {
+
+            if (canThrust && forwardThrust)
+            {
+
+                forwardThrust = true;
+
+            }
+
+            if (!forwardThrust || !canThrust)
+            {
+
+                forwardThrust = false;
+
+            }
+
+        }
+
+        if (shipSpeed > 0.0f)
+        {
+
+            stats.subFuel(shipSpeed / 1000.0f);
+
+        }
 
     }
 }

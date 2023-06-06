@@ -8907,6 +8907,7 @@ GameObject:
   - component: {fileID: 628281130}
   - component: {fileID: 628281132}
   - component: {fileID: 628281131}
+  - component: {fileID: 628281135}
   - component: {fileID: 628281134}
   - component: {fileID: 628281133}
   m_Layer: 5
@@ -8931,6 +8932,7 @@ RectTransform:
   - {fileID: 1473955982}
   - {fileID: 2106611519}
   - {fileID: 1236252489}
+  - {fileID: 1908721099}
   m_Father: {fileID: 573851572}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9005,6 +9007,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 1236252488}
+  ship: {fileID: 279370328}
+  shipCont: {fileID: 0}
+--- !u!114 &628281135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628281129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8781e5866f2b38444a4b0f3d3899d7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 1908721098}
   ship: {fileID: 279370328}
   shipCont: {fileID: 0}
 --- !u!1 &628471105
@@ -9426,6 +9443,7 @@ MonoBehaviour:
   upDownStrafeAmount: 0
   strafeSpeed: 0
   backwardsThrust: 0
+  forwardThrust: 0
   backwardsSpeed: 1
 --- !u!54 &647759475
 Rigidbody:
@@ -11391,6 +11409,7 @@ MonoBehaviour:
   upDownStrafeAmount: 0
   strafeSpeed: 0
   backwardsThrust: 0
+  forwardThrust: 0
   backwardsSpeed: 1
 --- !u!54 &794577965
 Rigidbody:
@@ -20406,11 +20425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: turnSpeed
-      value: 0.2
+      value: 0.325
       objectReference: {fileID: 0}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: rotateRate
-      value: 125
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: warpButton
@@ -20418,7 +20437,7 @@ PrefabInstance:
       objectReference: {fileID: 507184661}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: strafeSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1039159419758720262, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: speedLimitColliderObject
@@ -20671,6 +20690,10 @@ PrefabInstance:
     - target: {fileID: 7116702840351387615, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: m_RootOrder
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228905713397547877, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
+      propertyPath: fuelMax
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7228905713397547877, guid: 8a9f712a5e1252c48b4b8457013c67da, type: 3}
       propertyPath: currentHealth
@@ -21444,6 +21467,7 @@ MonoBehaviour:
   upDownStrafeAmount: 0
   strafeSpeed: 0
   backwardsThrust: 0
+  forwardThrust: 0
   backwardsSpeed: 1
 --- !u!54 &1508449421
 Rigidbody:
@@ -25020,6 +25044,7 @@ MonoBehaviour:
   upDownStrafeAmount: 0
   strafeSpeed: 0
   backwardsThrust: 0
+  forwardThrust: 0
   backwardsSpeed: 1
 --- !u!54 &1773340988
 Rigidbody:
@@ -27067,6 +27092,7 @@ MonoBehaviour:
   upDownStrafeAmount: 0
   strafeSpeed: 0
   backwardsThrust: 0
+  forwardThrust: 0
   backwardsSpeed: 1
 --- !u!54 &1907516843
 Rigidbody:
@@ -27268,6 +27294,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a04716a3212db04bbd18bbf28151395, type: 3}
+--- !u!1 &1908721098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908721099}
+  - component: {fileID: 1908721100}
+  m_Layer: 0
+  m_Name: forwardThrust
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1908721099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908721098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.003, y: -0.223, z: -0.001}
+  m_LocalScale: {x: 0.009175372, y: 0.009175372, z: 0.009175372}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 628281130}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1908721100
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908721098}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 478cf63a7d696a34dbe45aa53594ec0f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6.826667, y: 6.826667}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1912559999
 GameObject:
   m_ObjectHideFlags: 0
@@ -28222,6 +28332,7 @@ GameObject:
   - component: {fileID: 2033048432}
   - component: {fileID: 2033048434}
   - component: {fileID: 2033048433}
+  - component: {fileID: 2033048435}
   m_Layer: 5
   m_Name: fuelQty
   m_TagString: Untagged
@@ -28287,6 +28398,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033048431}
   m_CullTransparentMesh: 1
+--- !u!114 &2033048435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033048431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144de0284558d634da44c26ac1dbddde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 279370328}
+  fill: {fileID: 0}
+  amount: 0
+  amountMax: 0
+  fuelStats: {fileID: 0}
+  adjustedAmount: 0
 --- !u!1 &2036227456
 GameObject:
   m_ObjectHideFlags: 0

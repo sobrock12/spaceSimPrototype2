@@ -43,7 +43,7 @@ public class shipShield : MonoBehaviour
 
             shield.SetActive(false);
             shipRb.mass = 1.0f;
-            sc.rotateRate = 125.0f;
+            sc.rotateRate = 100.0f;
 
 
         }
@@ -54,7 +54,7 @@ public class shipShield : MonoBehaviour
             shieldHP = stats.shieldMax;
             shield.SetActive(true);
             shipRb.mass = 0.50f;
-            sc.rotateRate = 250.0f;
+            sc.rotateRate = 175.0f;
 
         }
 
