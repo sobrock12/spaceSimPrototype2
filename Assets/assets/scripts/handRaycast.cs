@@ -14,17 +14,21 @@ public class handRaycast : MonoBehaviour
     public float distance = 10f;
     public float uiDistance = 100.0f;
     public float shootDistance = 100.0f;
+    public float targetDist = 200.0f;
     public TextMeshProUGUI textMesh;
 
     [SerializeField] private LayerMask WhatCanIHit = 11;
     [SerializeField] private LayerMask aimingBorder;
     [SerializeField] private LayerMask whatCanIShoot;
+    [SerializeField] private LayerMask enemy;
 
     public RaycastHit hit;
 
     public RaycastHit uiHit;
 
     public RaycastHit shootHit;
+
+    public RaycastHit enemyUIBar;
 
     public bool rightTriggerFull = false;
     public bool leftTriggerFull = false;
@@ -128,7 +132,9 @@ public class handRaycast : MonoBehaviour
 
         Physics.Raycast(transform.position, transform.TransformDirection(offset), out shootHit, shootDistance, whatCanIShoot);
 
-        
+        Physics.Raycast(transform.position, transform.TransformDirection(offset), out enemyUIBar, targetDist, enemy);
+
+
         if (hit.collider != null)
         {
 

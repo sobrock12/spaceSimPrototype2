@@ -12,6 +12,8 @@ public class statusVars : MonoBehaviour
     public float currentFuel;
     public float startingFuel;
     public float fuelMax = 1000.0f;
+
+    public float damage = 25.0f;
     /*
     public float shieldMax = 100.0f;
     public float startingShield;

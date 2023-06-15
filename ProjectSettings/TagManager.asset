@@ -8,6 +8,7 @@ TagManager:
   - warp barrier
   - tunnelSpawn
   - aimingBorder
+  - enemy
   layers:
   - Default
   - TransparentFX

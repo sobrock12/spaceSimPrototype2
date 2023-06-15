@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Drawing;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+//using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 
 public class projectileHit : MonoBehaviour
@@ -8,9 +9,11 @@ public class projectileHit : MonoBehaviour
 
     public GameObject objHit;
     public statusVars stats;
+    public enemyStats enemyStats;
     public shieldStatusVars shieldStats;
     public shipShield shield;
     public float damageVal;
+    public float playerDamageVal;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -45,6 +48,17 @@ public class projectileHit : MonoBehaviour
                 stats.subHealth(damageVal);
 
             }
+
+        }
+
+        if (objHit.GetComponent<enemyStats>() != null)
+        {
+
+            enemyStats = objHit.GetComponent<enemyStats>();
+
+            playerDamageVal = stats.damage;
+
+            enemyStats.gotHit(playerDamageVal);
 
         }
 
