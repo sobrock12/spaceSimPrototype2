@@ -8,12 +8,20 @@ public class projectileHit : MonoBehaviour
 {
 
     public GameObject objHit;
+    public GameObject player;
     public statusVars stats;
     public enemyStats enemyStats;
     public shieldStatusVars shieldStats;
     public shipShield shield;
     public float damageVal;
     public float playerDamageVal;
+
+    void Start()
+    {
+
+        player = GameObject.Find("ship1");
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -51,10 +59,12 @@ public class projectileHit : MonoBehaviour
 
         }
 
-        if (objHit.GetComponent<enemyStats>() != null)
+        if (objHit.GetComponentInParent<enemyStats>() != null)
         {
 
-            enemyStats = objHit.GetComponent<enemyStats>();
+            enemyStats = objHit.GetComponentInParent<enemyStats>();
+
+            stats = player.GetComponent<statusVars>();
 
             playerDamageVal = stats.damage;
 
